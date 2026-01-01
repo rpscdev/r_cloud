@@ -1,0 +1,277 @@
+/* =========================================
+   1. GLOBAL & LAYOUT
+   ========================================= */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Main container for page content (Blog, Models, Contact) */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h1, h2, h3 { color: #ffffff; }
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   2. NAVBAR (Sticky & Glassmorphism)
+   ========================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(26, 26, 26, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand a {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+}
+.cloud-text { color: #646cff; }
+
+.navbar-links { display: flex; gap: 2rem; align-items: center; }
+.nav-link { color: #e0e0e0; font-weight: 500; transition: color 0.3s; }
+.nav-link:hover { color: #646cff; }
+
+.contact-btn {
+  border: 1px solid #646cff;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  color: #646cff;
+}
+.contact-btn:hover { background-color: #646cff; color: white; }
+
+/* =========================================
+   3. HOME PAGE STYLES
+   ========================================= */
+.hero-banner {
+  background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1920&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content { text-align: center; max-width: 700px; padding: 20px; }
+.hero-content h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.hero-buttons { display: flex; gap: 20px; justify-content: center; }
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-primary { background-color: #646cff; color: white; border: 2px solid #646cff; }
+.btn-primary:hover { background-color: #535bf2; transform: translateY(-3px); }
+
+.btn-outline { background: transparent; color: white; border: 2px solid white; }
+.btn-outline:hover { background: white; color: black; }
+
+/* Home Page Blog Grid */
+.section-container { max-width: 1100px; margin: 0 auto; padding: 4rem 20px; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.view-all-link { color: #646cff; font-weight: bold; }
+
+.blog-grid-home { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.blog-card-mini {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1 1 250px;
+  max-width: 300px;
+  transition: transform 0.2s;
+}
+.blog-card-mini:hover { transform: translateY(-5px); border-color: #646cff; }
+
+/* About Section */
+.about-section { background: #1a1a1a; padding: 4rem 20px; text-align: center; margin-top: 2rem; }
+.about-content { max-width: 800px; margin: 0 auto; }
+.social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+.social-icon { font-size: 2.5rem; color: #888; transition: transform 0.3s; }
+.social-icon:hover { transform: translateY(-5px); }
+.github:hover { color: white; }
+.linkedin:hover { color: #0077b5; }
+.kaggle:hover { color: #20beff; }
+.instagram:hover { color: #e1306c; }
+
+/* =========================================
+   4. BLOG PAGE (CRUD) STYLES
+   ========================================= */
+/* The Editor Form */
+.editor-section {
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.editor-section input, 
+.editor-section textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 6px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.editor-section input:focus,
+.editor-section textarea:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+.form-buttons { display: flex; gap: 10px; }
+.cancel-btn { background: #444; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+
+/* Main Blog List Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive Grid */
+  gap: 20px;
+}
+
+/* Blog Cards */
+.card {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card:hover { transform: translateY(-5px); border-color: #646cff; }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+.actions button {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.edit-btn { background: #d9a726; color: black; }
+.delete-btn { background: #d93026; color: white; }
+
+/* =========================================
+   5. MODELS PAGE STYLES
+   ========================================= */
+.model-card {
+  border-top: 4px solid #646cff; /* Unique top border for models */
+}
+
+.tags { margin: 15px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: 0.75rem;
+  background: #333;
+  color: #ccc;
+  padding: 4px 10px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .hero-content h1 { font-size: 2rem; }
+  .navbar { flex-direction: column; }
+  .navbar-links { margin-top: 1rem; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .grid { grid-template-columns: 1fr; }
+}
+/* --- HOME PAGE BLOG GRID (Updated for Symmetry) --- */
+
+/* --- HOME PAGE BLOG GRID (Updated for Symmetry) --- */
+
+.blog-grid-home {
+  display: grid;
+  /* DESKTOP DEFAULT: Exactly 4 columns (1 line) */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.blog-card-mini {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  
+  /* Make sure card fills the grid cell */
+  width: 100%; 
+  box-sizing: border-box; 
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.blog-card-mini:hover {
+  transform: translateY(-5px);
+  border-color: #646cff;
+}
+
+/* --- RESPONSIVE DESIGN (Phones & Tablets) --- */
+@media (max-width: 900px) {
+  .blog-grid-home {
+    /* TABLET/PHONE: Switch to 2 columns */
+    /* With 4 items, this creates exactly 2 lines (2x2) */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-grid-home {
+    /* VERY SMALL PHONES: Stack them 1 per line (Optional, for readability) */
+    /* If you strictly want 2 columns on small phones, delete this block */
+    grid-template-columns: 1fr;
+  }
+}

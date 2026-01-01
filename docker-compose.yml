@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: fast_backend
+    volumes:
+      # Maps the SQLite file on the VPS to the container so data persists!
+      - ./backend/sql_app.db:/app/sql_app.db
+    ports:
+      - "8000:8000"
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always

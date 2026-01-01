@@ -1,0 +1,35 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main  # Set this to 'master' if your default branch is named master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to VPS via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.VPS_IP }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        script: |
+          # 1. Navigate to the app directory
+          # (Make sure you cloned the repo to /var/www/app manually first!)
+          cd /var/www/app
+          
+          # 2. Pull the latest code from GitHub
+          git pull origin main
+          
+          # 3. Rebuild and restart the containers
+          # This recompiles the React app and updates the Python backend
+          docker compose up -d --build
+          
+          # 4. Clean up old, unused images to save disk space
+          docker image prune -f
