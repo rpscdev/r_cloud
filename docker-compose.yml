@@ -1,21 +1,26 @@
-version: '3.8'
+version: "3.8"
 
 services:
   backend:
     build: ./backend
     container_name: fast_backend
     volumes:
-      # Maps the SQLite file on the VPS to the container so data persists!
       - ./backend/sql_app.db:/app/sql_app.db
-    ports:
-      - "8000:8000"
     restart: always
 
   frontend:
     build: ./frontend
     container_name: react_frontend
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
+      - frontend
       - backend
     restart: always
