@@ -1,8 +1,4 @@
 fastapi
 uvicorn
-sqlmodel
-requests
-<<<<<<< HEAD
-
-=======
->>>>>>> f8e0fb208bbd6e8ed9746c9d382c712f26419fc6
+pydantic
+sqlalchemy
