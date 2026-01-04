@@ -4,7 +4,11 @@ from sqlmodel import SQLModel, Session, select
 from database import engine
 from models import BlogPost
 
-app = FastAPI(title="My AI Portfolio")
+
+app = FastAPI(
+    title="raghvendra.cloud",
+    root_path="/api"
+)
 
 # --- CORS CONFIGURATION ---
 # Updated to Server and Production domains
