@@ -4,6 +4,8 @@ services:
   backend:
     build: ./backend
     container_name: fast_backend
+    env_file:
+      - ./backend/.env
     volumes:
       - ./backend/sql_app.db:/app/sql_app.db
       # If you created a .env file on VPS, ensure docker reads it:
