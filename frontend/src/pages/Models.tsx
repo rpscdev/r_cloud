@@ -1,36 +1,46 @@
-export default function Models() {
-  const projects = [
-    {
-      id: 1,
-      title: "Sentiment Analyzer",
-      description: "Uses BERT to detect emotions in text.",
-      tags: ["NLP", "HuggingFace", "Python"],
-      demoUrl: "https://huggingface.co/spaces/your-username/sentiment-demo" 
-    },
-    {
-      id: 2,
-      title: "Titanic Survivor Predictor",
-      description: "A classic ML model deployed via Streamlit.",
-      tags: ["Scikit-Learn", "Tabular Data"],
-      demoUrl: "#" 
-    }
-  ];
+// 1. Import the data
+import { projects } from '../assets/projects'; 
 
+export default function Models() {
   return (
     <div className="container">
       <h2>My AI Models 🚀</h2>
       <div className="grid">
         {projects.map((project) => (
           <div key={project.id} className="card model-card">
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <div className="tags">
-              {project.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+            
+            {/* 2. ADD IMAGE HERE */}
+            <div className="card-image">
+                <img 
+                  src={project.imageUrl} 
+                  alt={project.title} 
+                  style={{
+                    width: '100%', 
+                    height: '180px', 
+                    objectFit: 'cover', 
+                    borderRadius: '4px 4px 0 0'
+                  }} 
+                />
             </div>
-            {/* Opens in new tab */}
-            <a href={project.demoUrl} target="_blank" rel="noreferrer">
-              <button className="primary-btn">Launch Demo ↗</button>
-            </a>
+
+            {/* Content Container */}
+            <div style={{ padding: '15px' }}>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                
+                <div className="tags">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="tag">{tag}</span>
+                  ))}
+                </div>
+
+                <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                  <button className="primary-btn" style={{marginTop: '10px'}}>
+                    Launch Demo ↗
+                  </button>
+                </a>
+            </div>
+
           </div>
         ))}
       </div>

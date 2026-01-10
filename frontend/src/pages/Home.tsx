@@ -13,6 +13,7 @@ const API_BASE_URL = import.meta.env.PROD
 
 // Define the shape of the blog post data
 interface BlogPost {
+  image_url: any;
   id: number;
   title: string;
   content: string;
@@ -60,19 +61,39 @@ export default function Home() {
           <Link to="/blog" className="view-all-link">View All Blogs →</Link>
         </div>
 
-        <div className="blog-grid-home">
-          {featuredPosts.length > 0 ? (
-            featuredPosts.map((post) => (
-              <div key={post.id} className="blog-card-mini">
-                <h3>{post.title}</h3>
-                <p>{post.content.substring(0, 100)}...</p>
-                <Link to="/blog" className="read-more">Read More</Link>
-              </div>
-            ))
-          ) : (
-            <p>No blogs published yet. Go to the Blog page to add some!</p>
-          )}
+      
+<div className="blog-grid-home">
+  {featuredPosts.length > 0 ? (
+    featuredPosts.map((post) => (
+      <Link 
+        to="/blog" 
+        key={post.id} 
+        className="blog-card-mini"
+        style={{ textDecoration: 'none', color: 'inherit' }} // Prevents blue link text
+      >
+        {/* 1. IMAGE SECTION */}
+        {post.image_url && (
+          <img 
+            src={post.image_url} 
+            alt={post.title} 
+            className="blog-mini-image" 
+          />
+        )}
+
+        {/* 2. TEXT CONTENT */}
+        <div className="blog-mini-content">
+            <h3>{post.title}</h3>
+            <p>{post.content.substring(0, 100)}...</p>
+            <span className="read-more-link">Read More →</span>
         </div>
+      </Link>
+    ))
+  ) : (
+    <p>No posts available.</p>
+  )}
+</div>
+
+       
       </section>
 
       {/* --- SECTION 3: ABOUT ME & SOCIALS --- */}
@@ -88,19 +109,19 @@ export default function Home() {
           <div className="social-links">
             {/* REPLACE 'yourusername' WITH YOUR ACTUAL PROFILE LINKS BELOW */}
             
-            <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="social-icon github">
+            <a href="https://github.com/rpscdev" target="_blank" rel="noreferrer" className="social-icon github">
               <FaGithub />
             </a>
             
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="social-icon linkedin">
+            <a href="https://www.linkedin.com/in/rpsingh505/" target="_blank" rel="noreferrer" className="social-icon linkedin">
               <FaLinkedin />
             </a>
             
-            <a href="https://kaggle.com/yourusername" target="_blank" rel="noreferrer" className="social-icon kaggle">
+            <a href="https://www.kaggle.com/rpschauhan505" target="_blank" rel="noreferrer" className="social-icon kaggle">
               <FaKaggle />
             </a>
             
-            <a href="https://instagram.com/yourusername" target="_blank" rel="noreferrer" className="social-icon instagram">
+            <a href="https://instagram.com/username" target="_blank" rel="noreferrer" className="social-icon instagram">
               <FaInstagram />
             </a>
             

@@ -7,7 +7,7 @@ class BlogPost(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     
     title: str
-    slug: str  # URL-friendly name (e.g., "my-first-analysis")
+    slug: str  # used in blogs for loading page with that name or for seo 
     content: str # This will store your Markdown text
     image_url: Optional[str] = None
     

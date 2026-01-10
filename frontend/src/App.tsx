@@ -4,9 +4,14 @@ import Home from './pages/Home';
 import Models from './pages/Models';
 import Blog from './pages/Blog'; 
 import './App.css';
+import GoogleAnalytics from './components/googleanalytics'; 
+
+import Footer from './components/Footer';
 
 function App() {
   return (
+    <>
+    <GoogleAnalytics />
     <Router>
       <div className="app-layout">
         <Navbar />
@@ -17,8 +22,10 @@ function App() {
             <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
+    </>
   );
 }
 
