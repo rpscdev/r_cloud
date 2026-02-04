@@ -1,15 +1,21 @@
-// 1. Import the data
 import { projects } from '../assets/projects'; 
 
 export default function Models() {
+  const track = (name: string) => window.umami?.track(name);
+
   return (
     <div className="container">
       <h2>My AI Models 🚀</h2>
       <div className="grid">
         {projects.map((project) => (
-          <div key={project.id} className="card model-card">
-            
-            {/* 2. ADD IMAGE HERE */}
+          <a
+            key={project.id}
+            className="card model-card model-card-link"
+            href={project.demoUrl}
+            target={project.demoUrl.startsWith('/') ? undefined : '_blank'}
+            rel={project.demoUrl.startsWith('/') ? undefined : 'noreferrer'}
+            onClick={() => track(`models:open:${project.title}`)}
+          >
             <div className="card-image">
                 <img 
                   src={project.imageUrl} 
@@ -23,7 +29,6 @@ export default function Models() {
                 />
             </div>
 
-            {/* Content Container */}
             <div style={{ padding: '15px' }}>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
@@ -34,14 +39,12 @@ export default function Models() {
                   ))}
                 </div>
 
-                <a href={project.demoUrl} target="_blank" rel="noreferrer">
-                  <button className="primary-btn" style={{marginTop: '10px'}}>
-                    Launch Demo ↗
-                  </button>
-                </a>
+                <button className="primary-btn" style={{ marginTop: '10px' }}>
+                  Launch Demo ↗
+                </button>
             </div>
 
-          </div>
+          </a>
         ))}
       </div>
     </div>

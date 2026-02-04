@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css';
 
-// --- CONFIGURATION ---
 const API_BASE_URL = import.meta.env.PROD 
   ? "/api" 
   : "http://localhost:8000";
 
-// 1. Updated Interface to include Image
 interface BlogPost {
   id?: number; 
   title: string;
   slug: string;
   content: string;
-  image_url?: string; // <--- NEW FIELD
+  image_url?: string;
   created_at?: string;
 }
 
@@ -21,18 +19,14 @@ function App() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Auth State
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // Form State
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [imageUrl, setImageUrl] = useState(""); // <--- NEW STATE
+  const [imageUrl, setImageUrl] = useState("");
   const [editingId, setEditingId] = useState<number | null>(null);
-
-  // --- API FUNCTIONS ---
 
   const fetchPosts = () => {
     axios.get(`${API_BASE_URL}/posts/`)
@@ -43,7 +37,6 @@ function App() {
       .catch(err => console.error(err));
   };
 
-  // NEW: Login Function
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
@@ -54,7 +47,7 @@ function App() {
       .then(res => {
         const accessToken = res.data.access_token;
         setToken(accessToken);
-        localStorage.setItem('token', accessToken); // Save to browser
+        localStorage.setItem('token', accessToken);
         setUsername("");
         setPassword("");
       })
@@ -71,7 +64,6 @@ function App() {
     const slug = title.toLowerCase().replace(/ /g, "-");
     const postData = { title, content, slug, image_url: imageUrl };
 
-    // AUTH HEADER
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
@@ -123,13 +115,12 @@ function App() {
 
   return (
     <div className="container">
-      <header style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
             <h1>My AI Data Portfolio 🚀</h1>
             <p>A place to document my journey.</p>
         </div>
         
-        {/* LOGOUT BUTTON (Only if logged in) */}
         {token && (
             <button onClick={handleLogout} style={{fontSize: '0.8rem', padding: '5px 10px'}}>
                 Logout
@@ -137,7 +128,6 @@ function App() {
         )}
       </header>
 
-      {/* --- ADMIN SECTION (Hidden if not logged in) --- */}
       {token ? (
           <section className="editor-section">
             <h2>{editingId ? "Edit Post" : "New Entry"}</h2>
@@ -176,7 +166,6 @@ function App() {
           </section>
       ) : null}
 
-      {/* --- THE BLOG LIST --- */}
       <main>
         <h2>Recent Posts</h2>
         {loading ? <p>Loading...</p> : (
@@ -184,7 +173,6 @@ function App() {
             {posts.map((post) => (
               <div key={post.id} className="card">
                 
-                {/* 1. IMAGE DISPLAY */}
                 {post.image_url && (
                     <img 
                         src={post.image_url} 
@@ -196,7 +184,6 @@ function App() {
                 <div className="card-header">
                   <h3>{post.title}</h3>
                   
-                  {/* 2. ADMIN ACTIONS (Hidden if not logged in) */}
                   {token && (
                       <div className="actions">
                         <button onClick={() => startEdit(post)} className="edit-btn">Edit</button>
@@ -211,7 +198,6 @@ function App() {
         )}
       </main>
 
-      {/* --- FOOTER LOGIN (To access Admin Mode) --- */}
       {!token && (
           <footer style={{marginTop: '50px', borderTop: '1px solid #ddd', paddingTop: '20px'}}>
             <details>

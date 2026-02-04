@@ -1,7 +1,6 @@
-
 import { MdEmail, MdPhone } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
-import './Footer.css'; // We will create this next
+import './Footer.css';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -19,7 +18,6 @@ const Footer = () => {
         <p>Feel free to reach out for collaborations or just a friendly chat.</p>
 
         <div className="contact-links-grid">
-            {/* Email Link */}
             <a href={`mailto:${email}`} className="contact-card">
                 <MdEmail className="contact-icon" />
                 <div>
@@ -28,7 +26,6 @@ const Footer = () => {
                 </div>
             </a>
 
-             {/* Phone Link */}
             <a href={`tel:${phoneNo}`} className="contact-card">
                 <MdPhone className="contact-icon" />
                 <div>
@@ -37,8 +34,6 @@ const Footer = () => {
                 </div>
             </a>
 
-            {/* WhatsApp Link */}
-            {/* target="_blank" opens in new tab */}
             <a 
                 href={`https://wa.me/${whatsappNo}`} 
                 target="_blank" 

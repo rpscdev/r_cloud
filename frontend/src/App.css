@@ -1,6 +1,3 @@
-/* =========================================
-   1. GLOBAL & LAYOUT
-   ========================================= */
 body {
   background-color: #121212;
   color: #e0e0e0;
@@ -10,7 +7,10 @@ body {
   min-height: 100vh;
 }
 
-/* Main container for page content (Blog, Models, Contact) */
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   width: 100%;
   max-width: 1100px;
@@ -19,13 +19,13 @@ body {
   box-sizing: border-box;
 }
 
-/* Headings */
 h1, h2, h3 { color: #ffffff; }
 a { text-decoration: none; color: inherit; }
 
-/* =========================================
-   2. NAVBAR (Sticky & Glassmorphism)
-   ========================================= */
+.home-container {
+  min-height: 100vh;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -58,9 +58,6 @@ a { text-decoration: none; color: inherit; }
 }
 .contact-btn:hover { background-color: #646cff; color: white; }
 
-/* =========================================
-   3. HOME PAGE STYLES
-   ========================================= */
 .hero-banner {
   background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1920&auto=format&fit=crop');
   background-size: cover;
@@ -84,7 +81,6 @@ a { text-decoration: none; color: inherit; }
 .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
-/* Buttons */
 .btn {
   padding: 12px 24px;
   font-weight: bold;
@@ -98,24 +94,10 @@ a { text-decoration: none; color: inherit; }
 .btn-outline { background: transparent; color: white; border: 2px solid white; }
 .btn-outline:hover { background: white; color: black; }
 
-/* Home Page Blog Grid */
 .section-container { max-width: 1100px; margin: 0 auto; padding: 4rem 20px; }
 .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
 .view-all-link { color: #646cff; font-weight: bold; }
 
-.blog-grid-home { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-.blog-card-mini {
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 20px;
-  flex: 1 1 250px;
-  max-width: 300px;
-  transition: transform 0.2s;
-}
-.blog-card-mini:hover { transform: translateY(-5px); border-color: #646cff; }
-
-/* About Section */
 .about-section { background: #1a1a1a; padding: 4rem 20px; text-align: center; margin-top: 2rem; }
 .about-content { max-width: 800px; margin: 0 auto; }
 .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
@@ -126,10 +108,6 @@ a { text-decoration: none; color: inherit; }
 .kaggle:hover { color: #20beff; }
 .instagram:hover { color: #e1306c; }
 
-/* =========================================
-   4. BLOG PAGE (CRUD) STYLES
-   ========================================= */
-/* The Editor Form */
 .editor-section {
   background: #1e1e1e;
   padding: 2rem;
@@ -139,7 +117,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-.editor-section input, 
+.editor-section input,
 .editor-section textarea {
   width: 100%;
   padding: 12px;
@@ -161,14 +139,12 @@ a { text-decoration: none; color: inherit; }
 .form-buttons { display: flex; gap: 10px; }
 .cancel-btn { background: #444; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
 
-/* Main Blog List Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive Grid */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
-/* Blog Cards */
 .card {
   background: #1e1e1e;
   padding: 1.5rem;
@@ -201,11 +177,17 @@ a { text-decoration: none; color: inherit; }
 .edit-btn { background: #d9a726; color: black; }
 .delete-btn { background: #d93026; color: white; }
 
-/* =========================================
-   5. MODELS PAGE STYLES
-   ========================================= */
 .model-card {
-  border-top: 4px solid #646cff; /* Unique top border for models */
+  border-top: 4px solid #646cff;
+}
+
+.model-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.model-card-link:hover {
+  text-decoration: none;
 }
 
 .tags { margin: 15px 0; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -219,20 +201,16 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: 0.5px;
 }
 
-/* Responsive fixes */
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 2rem; }
   .navbar { flex-direction: column; }
   .navbar-links { margin-top: 1rem; gap: 1rem; flex-wrap: wrap; justify-content: center; }
   .grid { grid-template-columns: 1fr; }
 }
-/* --- HOME PAGE BLOG GRID (Updated for Symmetry) --- */
-
-/* --- HOME PAGE BLOG GRID (Updated for Symmetry) --- */
 
 .blog-grid-home {
   display: grid;
-  /* DESKTOP DEFAULT: Exactly 4 columns (1 line) */
+
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
@@ -243,11 +221,10 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid #333;
   border-radius: 12px;
   padding: 20px;
-  
-  /* Make sure card fills the grid cell */
-  width: 100%; 
-  box-sizing: border-box; 
-  
+
+  width: 100%;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -259,19 +236,292 @@ a { text-decoration: none; color: inherit; }
   border-color: #646cff;
 }
 
-/* --- RESPONSIVE DESIGN (Phones & Tablets) --- */
+.blog-mini-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.blog-mini-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.read-more-link {
+  margin-top: auto;
+  color: #78d4ff;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .blog-grid-home {
-    /* TABLET/PHONE: Switch to 2 columns */
-    /* With 4 items, this creates exactly 2 lines (2x2) */
+
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .blog-grid-home {
-    /* VERY SMALL PHONES: Stack them 1 per line (Optional, for readability) */
-    /* If you strictly want 2 columns on small phones, delete this block */
+
     grid-template-columns: 1fr;
+  }
+}
+
+.weather-shell {
+  background: radial-gradient(circle at top, rgba(100, 108, 255, 0.2), transparent 55%),
+    radial-gradient(circle at 20% 30%, rgba(120, 212, 255, 0.15), transparent 45%);
+  min-height: 100vh;
+}
+
+.weather-hero {
+  padding: 3.5rem 0 2rem;
+  background: linear-gradient(130deg, rgba(27, 31, 46, 0.95), rgba(14, 18, 30, 0.95));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.weather-hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.weather-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  color: #78d4ff;
+  margin-bottom: 0.5rem;
+}
+
+.weather-subtitle {
+  color: #c9d1f5;
+  max-width: 640px;
+}
+
+.weather-search {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.weather-search input {
+  flex: 1 1 240px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(10, 12, 20, 0.7);
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.weather-error {
+  color: #ff9f67;
+  font-weight: 600;
+}
+
+.weather-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+.weather-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+
+.weather-kpi-card {
+  background: rgba(20, 24, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.weather-label {
+  font-size: 0.85rem;
+  color: #9aa4d6;
+  margin-bottom: 0.35rem;
+}
+
+.weather-muted {
+  color: #8c95b7;
+  font-size: 0.85rem;
+}
+
+.weather-pill {
+  background: rgba(120, 212, 255, 0.15);
+  color: #78d4ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  height: fit-content;
+}
+
+.weather-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #e5e8ff;
+  font-size: 0.85rem;
+  gap: 4px;
+}
+
+.weather-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.weather-panel {
+  background: rgba(16, 18, 28, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.weather-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather-chip {
+  background: rgba(255, 159, 103, 0.16);
+  color: #ff9f67;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.weather-chart {
+  height: 140px;
+  background: rgba(10, 12, 20, 0.8);
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.weather-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.weather-hour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 12px;
+}
+
+.weather-hour {
+  background: rgba(12, 15, 26, 0.75);
+  border-radius: 10px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #c9d1f5;
+}
+
+.weather-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.weather-forecast-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.weather-range {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.weather-range-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.weather-range-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #78d4ff, #646cff);
+}
+
+.weather-rain {
+  color: #ff9f67;
+  font-weight: 600;
+}
+
+.weather-insights {
+  grid-column: span 2;
+}
+
+.weather-insight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #d5dbff;
+  font-size: 0.95rem;
+}
+
+.weather-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: #8c95b7;
+}
+
+.weather-meta strong {
+  color: #e0e6ff;
+  display: block;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .weather-insights {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .weather-hero-content {
+    padding: 0 1.25rem;
+  }
+
+  .weather-container {
+    padding: 2rem 1.25rem 3rem;
   }
 }

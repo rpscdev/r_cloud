@@ -1,8 +1,12 @@
 .footer-section {
-    background-color: rgba(26, 26, 26, 0.9); /* Dark blue/black background */
+    background-color: rgba(26, 26, 26, 0.9);
     color: #e0e0e0;
     padding: 60px 0 20px;
-    margin-top: auto; /* Pushes footer to bottom if content is short */
+    margin-top: auto;
+}
+
+#contact-footer {
+    scroll-margin-top: 90px;
 }
 
 .footer-container {
@@ -24,14 +28,13 @@
     justify-content: center;
 }
 
-/* The individual contact boxes */
 .contact-card {
     display: flex;
     align-items: center;
-    background-color: #252542; /* Slightly lighter than footer bg */
+    background-color: #252542;
     padding: 20px;
     border-radius: 12px;
-    text-decoration: none; /* Remove default underline from links */
+    text-decoration: none;
     color: white;
     transition: transform 0.2s ease, background-color 0.2s ease;
     border: 1px solid #333355;
@@ -46,7 +49,7 @@
 .contact-icon {
     font-size: 2.5rem;
     margin-right: 15px;
-    color: #646cff; /* Default icon color (blue) */
+    color: #646cff;
 }
 
 .contact-card div {
@@ -63,19 +66,17 @@
 .value {
     font-weight: 500;
     font-size: 1.1rem;
-    word-break: break-all; /* Ensures long emails don't overflow */
+    word-break: break-all;
 }
 
-/* Specific styling for WhatsApp */
 .whatsapp-card .contact-icon {
-    color: #25D366; /* WhatsApp Brand Green */
+    color: #25D366;
 }
 
 .whatsapp-card:hover {
     border-color: #25D366;
 }
 
-/* Bottom copyright area */
 .footer-bottom {
     border-top: 1px solid #333355;
     padding-top: 20px;
