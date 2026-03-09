@@ -70,11 +70,11 @@
 }
 
 .whatsapp-card .contact-icon {
-    color: #25D366;
+    color: #646cff;
 }
 
 .whatsapp-card:hover {
-    border-color: #25D366;
+    border-color: #646cff;
 }
 
 .footer-bottom {
@@ -82,4 +82,37 @@
     padding-top: 20px;
     font-size: 0.9rem;
     color: #888;
+}
+
+.legal-links {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.legal-links a {
+    color: #9ba4cf;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.legal-links a:hover {
+    color: #cfd7ff;
+}
+
+.cookie-settings-btn {
+    background: transparent;
+    border: 1px solid #46508a;
+    color: #9ba4cf;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.cookie-settings-btn:hover {
+    color: #e5e8ff;
+    border-color: #6370c0;
 }

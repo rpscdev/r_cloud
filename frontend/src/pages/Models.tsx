@@ -1,10 +1,16 @@
 import { projects } from '../assets/projects'; 
+import Seo from '../components/Seo';
 
 export default function Models() {
   const track = (name: string) => window.umami?.track(name);
 
   return (
     <div className="container">
+      <Seo
+        title="AI Models | Raghvendra.cloud"
+        description="Explore deployed AI model demos including weather intelligence and data-driven apps."
+        path="/models"
+      />
       <h2>My AI Models 🚀</h2>
       <div className="grid">
         {projects.map((project) => (
@@ -20,6 +26,8 @@ export default function Models() {
                 <img 
                   src={project.imageUrl} 
                   alt={project.title} 
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     width: '100%', 
                     height: '180px', 

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EU Market Strategy Report</title>
+  <style>
+    body {
+      font-family: DejaVu Sans, Arial, sans-serif;
+      margin: 32px;
+      color: #1f2937;
+    }
+    h1 {
+      color: #0f172a;
+      margin-bottom: 0;
+    }
+    .subtitle {
+      color: #475569;
+      margin-top: 8px;
+    }
+    h2 {
+      color: #0f766e;
+      margin-top: 28px;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 6px;
+    }
+    ul {
+      margin: 8px 0 0 18px;
+      line-height: 1.5;
+    }
+    .meta {
+      margin-top: 18px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+    .source {
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>EU Market Strategy AI</h1>
+  <p class="subtitle">Business entry strategy report for {{ query }}</p>
+
+  <div class="meta">
+    <strong>Generated:</strong> {{ generated_at }}<br>
+    <strong>Market focus:</strong> {{ market_focus }}
+  </div>
+
+  <h2>Executive Summary</h2>
+  <p>This report converts EU and German regulatory obligations into practical market-entry strategy actions.</p>
+
+  <h2>Key Regulations</h2>
+  <ul>
+    {% for item in strategy.key_regulations %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Business Opportunities</h2>
+  <ul>
+    {% for item in strategy.business_opportunities %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Marketing Strategy</h2>
+  <ul>
+    {% for item in strategy.marketing_strategy %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Compliance Checklist</h2>
+  <ul>
+    {% for item in strategy.compliance_checklist %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Implementation Roadmap</h2>
+  <ul>
+    {% for item in strategy.implementation_roadmap %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Retrieved Sources</h2>
+  {% for source in sources %}
+    <div class="source">{{ source }}</div>
+  {% endfor %}
+</body>
+</html>

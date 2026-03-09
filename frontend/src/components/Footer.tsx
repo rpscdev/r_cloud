@@ -1,5 +1,7 @@
 import { MdEmail, MdPhone } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { openCookiePreferences } from "./CookieBanner";
 import './Footer.css';
 
 const Footer = () => {
@@ -50,6 +52,14 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {currentYear} Raghvendra.cloud. All rights reserved.</p>
+          <div className="legal-links">
+            <Link to="/privacy">Privacy</Link>
+            <Link to="/terms">Terms</Link>
+            <Link to="/impressum">Impressum</Link>
+            <button type="button" className="cookie-settings-btn" onClick={openCookiePreferences}>
+              Cookie Settings
+            </button>
+          </div>
         </div>
       </div>
     </footer>

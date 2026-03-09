@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import Seo from '../components/Seo';
 
 const DEFAULT_LOCATION = {
   name: 'New York, US',
@@ -206,6 +207,11 @@ export default function WeatherDashboard() {
 
   return (
     <div className="weather-shell">
+      <Seo
+        title="Weather Dashboard | Raghvendra.cloud"
+        description="Interactive weather intelligence dashboard with live forecast analytics, trends, and insights."
+        path="/models/wether-dashbord"
+      />
       <div className="weather-hero">
         <div className="weather-hero-content">
           <div>
@@ -299,13 +305,13 @@ export default function WeatherDashboard() {
                   <polyline
                     points={buildSparkline(hourlySlice.temps)}
                     fill="none"
-                    stroke="#78d4ff"
+                    stroke="#aeb3ff"
                     strokeWidth="2"
                   />
                   <polyline
                     points={buildSparkline(hourlySlice.rain)}
                     fill="none"
-                    stroke="#ff9f67"
+                    stroke="#646cff"
                     strokeWidth="2"
                     strokeDasharray="4 3"
                   />

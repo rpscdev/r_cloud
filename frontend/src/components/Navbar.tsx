@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="navbar-links">
         <Link to="/" className="nav-link">Home</Link>
         <Link to="/models" className="nav-link">AI Models</Link>
-        <Link to="/blog" className="nav-link">Blog</Link>
+        <Link to="/blog" className="nav-link">Blogs</Link>
         <a href="#contact-footer" className="nav-link contact-btn">Contact</a>
       </div>
     </nav>

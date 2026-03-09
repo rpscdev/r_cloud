@@ -104,9 +104,9 @@ a { text-decoration: none; color: inherit; }
 .social-icon { font-size: 2.5rem; color: #888; transition: transform 0.3s; }
 .social-icon:hover { transform: translateY(-5px); }
 .github:hover { color: white; }
-.linkedin:hover { color: #0077b5; }
-.kaggle:hover { color: #20beff; }
-.instagram:hover { color: #e1306c; }
+.linkedin:hover { color: #646cff; }
+.kaggle:hover { color: #646cff; }
+.instagram:hover { color: #646cff; }
 
 .editor-section {
   background: #1e1e1e;
@@ -174,8 +174,8 @@ a { text-decoration: none; color: inherit; }
   border-radius: 4px;
   cursor: pointer;
 }
-.edit-btn { background: #d9a726; color: black; }
-.delete-btn { background: #d93026; color: white; }
+.edit-btn { background: #646cff; color: white; }
+.delete-btn { background: #2a2a2a; color: white; border: 1px solid #646cff; }
 
 .model-card {
   border-top: 4px solid #646cff;
@@ -253,7 +253,7 @@ a { text-decoration: none; color: inherit; }
 
 .read-more-link {
   margin-top: auto;
-  color: #78d4ff;
+  color: #aeb3ff;
   font-weight: 600;
 }
 
@@ -296,7 +296,7 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 0.75rem;
-  color: #78d4ff;
+  color: #aeb3ff;
   margin-bottom: 0.5rem;
 }
 
@@ -322,7 +322,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .weather-error {
-  color: #ff9f67;
+  color: #aeb3ff;
   font-weight: 600;
 }
 
@@ -363,7 +363,7 @@ a { text-decoration: none; color: inherit; }
 
 .weather-pill {
   background: rgba(120, 212, 255, 0.15);
-  color: #78d4ff;
+  color: #aeb3ff;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -403,8 +403,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .weather-chip {
-  background: rgba(255, 159, 103, 0.16);
-  color: #ff9f67;
+  background: rgba(100, 108, 255, 0.2);
+  color: #aeb3ff;
   font-size: 0.75rem;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
@@ -471,11 +471,11 @@ a { text-decoration: none; color: inherit; }
 
 .weather-range-fill {
   height: 100%;
-  background: linear-gradient(90deg, #78d4ff, #646cff);
+  background: linear-gradient(90deg, #aeb3ff, #646cff);
 }
 
 .weather-rain {
-  color: #ff9f67;
+  color: #aeb3ff;
   font-weight: 600;
 }
 
@@ -524,4 +524,92 @@ a { text-decoration: none; color: inherit; }
   .weather-container {
     padding: 2rem 1.25rem 3rem;
   }
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2000;
+  background: rgba(16, 18, 28, 0.96);
+  border: 1px solid #2d3348;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.cookie-banner p {
+  margin: 0;
+  color: #d6dcff;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.legal-page {
+  max-width: 900px;
+  line-height: 1.65;
+}
+
+.blog-detail-shell {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.blog-detail-header {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-description {
+  color: #cfd5ff;
+  max-width: 780px;
+}
+
+.blog-detail-hero {
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #2e3352;
+  display: block;
+}
+
+.blog-detail-content {
+  color: #e0e0e0;
+  line-height: 1.75;
+}
+
+.blog-detail-content h2,
+.blog-detail-content h3,
+.blog-detail-content h4 {
+  margin-top: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-detail-content p,
+.blog-detail-content li {
+  color: #d6dbff;
+}
+
+.blog-detail-content code {
+  background: #111524;
+  border: 1px solid #2e3352;
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+}
+
+.blog-detail-content pre {
+  background: #0f1322;
+  border: 1px solid #2b3150;
+  border-radius: 10px;
+  padding: 1rem;
+  overflow-x: auto;
 }
