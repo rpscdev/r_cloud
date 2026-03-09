@@ -574,7 +574,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .blog-detail-hero {
-  max-height: 420px;
+  max-height: 300px;
   object-fit: contain;
   border-radius: 12px;
   margin-bottom: 1.5rem;
