@@ -45,6 +45,7 @@ services:
       PYTHONPATH: /app
     volumes:
       - ./backend/data:/app/backend/data
+      - ./backend/content:/app/backend/content
     restart: always
 
   frontend:
