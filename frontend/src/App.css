@@ -561,6 +561,7 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid #333;
   border-radius: 14px;
   padding: 1.5rem;
+  overflow: hidden;
 }
 
 .blog-detail-header {
@@ -574,12 +575,17 @@ a { text-decoration: none; color: inherit; }
 }
 
 .blog-detail-hero {
+<<<<<<< HEAD
+  width: 100%;
+=======
   max-width: 100%;
+>>>>>>> 71fa37efc75110fec6fbb849a989ba11ef1337ff
   height: auto;
   border-radius: 12px;
   margin-bottom: 1.5rem;
   border: 1px solid #2e3352;
   display: block;
+  box-sizing: border-box;
 }
 
 .blog-detail-content {
