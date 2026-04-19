@@ -63,7 +63,7 @@ r_cloud/
 Create `backend/.env`:
 
 ```env
-# Auth
+# Auth(/This is old version currently no in use due to removal of sql data base/)
 SECRET_KEY=your_secret_key
 ADMIN_USERNAME=your_admin
 ADMIN_HASHED_PASSWORD=your_bcrypt_hash
