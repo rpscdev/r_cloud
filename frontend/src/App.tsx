@@ -29,7 +29,7 @@ function App() {
             <Route path="/models" element={<Models />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/models/wether-dashbord" element={<WeatherDashboard />} />
+            <Route path="/models/weather-dashboard" element={<WeatherDashboard />} />
             <Route path="/models/eu-market-strategy-ai" element={<EUMarketStrategyDashboard />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />

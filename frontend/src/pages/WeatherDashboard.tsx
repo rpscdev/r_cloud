@@ -210,7 +210,7 @@ export default function WeatherDashboard() {
       <Seo
         title="Weather Dashboard | Raghvendra.cloud"
         description="Interactive weather intelligence dashboard with live forecast analytics, trends, and insights."
-        path="/models/wether-dashbord"
+        path="/models/weather-dashboard"
       />
       <div className="weather-hero">
         <div className="weather-hero-content">
