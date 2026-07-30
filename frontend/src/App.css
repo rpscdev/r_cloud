@@ -274,7 +274,6 @@ a { text-decoration: none; color: inherit; }
 .weather-shell {
   background: radial-gradient(circle at top, rgba(100, 108, 255, 0.2), transparent 55%),
     radial-gradient(circle at 20% 30%, rgba(120, 212, 255, 0.15), transparent 45%);
-  min-height: 100vh;
 }
 
 .weather-hero {
@@ -337,16 +336,6 @@ a { text-decoration: none; color: inherit; }
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   margin-bottom: 2rem;
-}
-
-.weather-section-header {
-  margin: 3rem 0 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.weather-section-header h2 {
-  margin: 0 0 0.5rem;
 }
 
 .weather-gps-bar {
@@ -524,6 +513,15 @@ a { text-decoration: none; color: inherit; }
   color: #e0e6ff;
   display: block;
   margin-top: 4px;
+}
+
+.weather-credit {
+  margin: 2.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8c95b7;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 @media (max-width: 900px) {
