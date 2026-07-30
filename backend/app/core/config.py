@@ -51,6 +51,7 @@ class Settings(BaseSettings):
     regulation_download_dir: str = Field(default="data/regulations", alias="REGULATION_DOWNLOAD_DIR")
     local_regulation_pdfs_dir: str = Field(default="data/regulation_pdfs", alias="LOCAL_REGULATION_PDFS_DIR")
     report_output_dir: str = Field(default="data/reports", alias="REPORT_OUTPUT_DIR")
+    balloon_data_path: str = Field(default="data/balloon.jsonl", alias="BALLOON_DATA_PATH")
     allowed_domains: str = Field(
         default="eur-lex.europa.eu,ec.europa.eu,bundesregierung.de",
         alias="ALLOWED_REGULATION_DOMAINS",
@@ -137,6 +138,11 @@ class Settings(BaseSettings):
     @property
     def resolved_blog_images_dir(self) -> Path:
         path = Path(self.blog_images_dir)
+        return path if path.is_absolute() else BASE_DIR / path
+
+    @property
+    def resolved_balloon_data_path(self) -> Path:
+        path = Path(self.balloon_data_path)
         return path if path.is_absolute() else BASE_DIR / path
 
 

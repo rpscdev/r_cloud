@@ -20,6 +20,7 @@ from app.agents.gemini_client import GeminiClient
 from app.agents.opportunity_extractor import OpportunityExtractionAgent
 from app.agents.query_rewriter import QueryRewriterAgent
 from app.agents.strategy_generator import StrategyGeneratorAgent
+from app.api.routes.balloon import router as balloon_router
 from app.api.routes.blog import router as blog_router
 from app.api.routes.strategy import router as strategy_router
 from app.blog.service import MarkdownBlogService
@@ -211,4 +212,5 @@ def metrics() -> Response:
 
 
 app.include_router(blog_router)
+app.include_router(balloon_router)
 app.include_router(strategy_router, prefix=settings.api_prefix)

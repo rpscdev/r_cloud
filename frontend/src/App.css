@@ -339,6 +339,22 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 2rem;
 }
 
+.weather-section-header {
+  margin: 3rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.weather-section-header h2 {
+  margin: 0 0 0.5rem;
+}
+
+.weather-gps-bar {
+  flex: none;
+  width: 90px;
+  align-self: center;
+}
+
 .weather-kpi-card {
   background: rgba(20, 24, 38, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.08);
