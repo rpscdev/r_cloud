@@ -4,13 +4,11 @@ from __future__ import annotations
 
 import logging
 from threading import Lock
-from time import perf_counter
 
 import chromadb
 from sentence_transformers import SentenceTransformer
 
 from app.core.config import Settings
-from app.observability.metrics import VECTOR_RETRIEVAL_TIME_SECONDS
 from app.rag.types import RegulationChunk
 
 logger = logging.getLogger(__name__)
@@ -77,7 +75,6 @@ class ChromaRegulationStore:
             logger.warning("Chroma collection is empty. Run collect-regulations before generate-strategy.")
             return []
 
-        started_at = perf_counter()
         embedding_model = self._get_embedding_model()
         query_embedding = embedding_model.encode([query], normalize_embeddings=True).tolist()
 
@@ -86,8 +83,6 @@ class ChromaRegulationStore:
             n_results=n_results,
             include=["documents", "metadatas"],
         )
-
-        VECTOR_RETRIEVAL_TIME_SECONDS.observe(perf_counter() - started_at)
 
         documents = result.get("documents", [[]])[0]
         metadatas = result.get("metadatas", [[]])[0]

@@ -12,7 +12,6 @@ import httpx
 from bs4 import BeautifulSoup
 
 from app.core.config import Settings
-from app.observability.metrics import REGULATION_PDFS_COLLECTED_TOTAL
 
 logger = logging.getLogger(__name__)
 
@@ -127,7 +126,6 @@ class RegulationCrawler:
                 local_path = self._download_dir / filename
                 local_path.write_bytes(content)
                 downloaded.append(DownloadedPDF(source_url=url, local_path=local_path))
-                REGULATION_PDFS_COLLECTED_TOTAL.inc()
 
         return downloaded
 

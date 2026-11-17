@@ -1,0 +1,9 @@
+**/node_modules
+**/__pycache__
+**/.venv
+frontend/dist
+.git
+.env
+keys
+keys.pub
+backend/data/reports

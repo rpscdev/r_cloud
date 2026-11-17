@@ -10,7 +10,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from weasyprint import HTML
 
 from app.core.config import Settings
-from app.observability.metrics import PDF_GENERATION_TIME_SECONDS, observe_duration
 from app.schemas.strategy import StrategyPayload
 
 
@@ -56,7 +55,6 @@ class PDFReportService:
         filename = f"strategy_report_{uuid4().hex[:12]}.pdf"
         output_path = self._output_dir / filename
 
-        with observe_duration(PDF_GENERATION_TIME_SECONDS):
-            HTML(string=html).write_pdf(str(output_path))
+        HTML(string=html).write_pdf(str(output_path))
 
         return str(output_path)

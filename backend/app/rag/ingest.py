@@ -10,7 +10,6 @@ from pathlib import Path
 from pypdf import PdfReader
 
 from app.core.config import Settings
-from app.observability.metrics import REGULATION_CHUNKS_INGESTED_TOTAL
 from app.rag.chunker import chunk_text_by_words
 from app.rag.chroma_store import ChromaRegulationStore
 from app.rag.types import RegulationChunk
@@ -111,10 +110,7 @@ class RegulationIngestionService:
                 )
             )
 
-        inserted = self._store.add_chunks(prepared_chunks)
-        if inserted:
-            REGULATION_CHUNKS_INGESTED_TOTAL.inc(inserted)
-        return inserted
+        return self._store.add_chunks(prepared_chunks)
 
     def ingest_local_pdf_document(self, file_path: Path) -> int:
         """Ingest local PDF document from configured local regulation folder."""

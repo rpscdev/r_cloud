@@ -4,14 +4,12 @@ from __future__ import annotations
 
 import logging
 from logging.config import dictConfig
-from time import perf_counter
 
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
@@ -28,7 +26,6 @@ from app.core.config import get_settings
 from app.core.container import AppContainer
 from app.core.rate_limit import limiter
 from app.crawler.tavily_crawler import RegulationCrawler
-from app.observability.metrics import HTTP_REQUEST_COUNT, HTTP_REQUEST_LATENCY_SECONDS
 from app.pdf.report_service import PDFReportService
 from app.rag.chroma_store import ChromaRegulationStore
 from app.rag.ingest import RegulationIngestionService
@@ -82,27 +79,6 @@ app.add_middleware(
     allow_headers=["Content-Type", "x-app-password", "Authorization"],
 )
 app.add_middleware(SlowAPIMiddleware)
-
-
-@app.middleware("http")
-async def prometheus_middleware(request: Request, call_next):
-    """Collect per-request Prometheus metrics."""
-
-    started_at = perf_counter()
-    status_code = 500
-
-    try:
-        response = await call_next(request)
-        status_code = response.status_code
-        return response
-    finally:
-        endpoint = request.url.path
-        HTTP_REQUEST_COUNT.labels(
-            request.method,
-            endpoint,
-            str(status_code),
-        ).inc()
-        HTTP_REQUEST_LATENCY_SECONDS.labels(request.method, endpoint).observe(perf_counter() - started_at)
 
 
 @app.middleware("http")
@@ -204,13 +180,6 @@ def healthcheck() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/metrics", include_in_schema=False)
-def metrics() -> Response:
-    """Expose Prometheus metrics endpoint."""
-
-    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
-
-
-app.include_router(blog_router)
-app.include_router(balloon_router)
+app.include_router(blog_router, prefix="/api")
+app.include_router(balloon_router, prefix="/api")
 app.include_router(strategy_router, prefix=settings.api_prefix)

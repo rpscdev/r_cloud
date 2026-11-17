@@ -23,29 +23,23 @@ def test_health_response_shape(client: TestClient) -> None:
     assert data["status"] == "ok"
 
 
-def test_metrics_endpoint_accessible(client: TestClient) -> None:
-    response = client.get("/metrics")
-    assert response.status_code == 200
-    assert "text/plain" in response.headers["content-type"]
-
-
 # ── Blog endpoints ─────────────────────────────────────────────────────────────
 
 def test_list_posts_returns_200(client: TestClient) -> None:
     client.app.state.blog_service.list_posts.return_value = []
-    response = client.get("/posts/")
+    response = client.get("/api/posts/")
     assert response.status_code == 200
 
 
 def test_list_posts_returns_list(client: TestClient) -> None:
     client.app.state.blog_service.list_posts.return_value = []
-    data = client.get("/posts/").json()
+    data = client.get("/api/posts/").json()
     assert isinstance(data, list)
 
 
 def test_get_post_not_found_returns_404(client: TestClient) -> None:
     client.app.state.blog_service.get_post.return_value = None
-    response = client.get("/posts/nonexistent-slug")
+    response = client.get("/api/posts/nonexistent-slug")
     assert response.status_code == 404
 
 
