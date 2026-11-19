@@ -27,6 +27,9 @@ COPY backend/requirements.txt ./requirements.txt
 # requirements.txt pulls CPU-only PyTorch via the extra index
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Bake the embedding model into the image so Cloud Run never downloads it at runtime
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+
 COPY backend/ ./
 COPY --from=frontend-build /frontend/dist ./frontend_dist
 

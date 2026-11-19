@@ -3,7 +3,7 @@
 **/.venv
 frontend/dist
 .git
-.env
+**/.env
 keys
 keys.pub
 backend/data/reports

@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import logging
 from threading import Lock
+from typing import TYPE_CHECKING
 
-import chromadb
-from sentence_transformers import SentenceTransformer
+if TYPE_CHECKING:
+    import chromadb
+    from sentence_transformers import SentenceTransformer
 
 from app.core.config import Settings
 from app.rag.types import RegulationChunk
@@ -22,13 +24,32 @@ class ChromaRegulationStore:
         self._embedding_model_name = settings.embedding_model_name
         self._embedding_model: SentenceTransformer | None = None
         self._embedding_lock = Lock()
-        self._client = chromadb.PersistentClient(path=settings.chroma_persist_dir)
-        self._collection = self._client.get_or_create_collection(name=settings.chroma_collection)
-        logger.info(
-            "Initialized Chroma collection '%s' in %s",
-            settings.chroma_collection,
-            settings.chroma_persist_dir,
-        )
+        self._chroma_lock = Lock()
+        self._client: chromadb.ClientAPI | None = None
+        self._collection_obj: chromadb.Collection | None = None
+
+    @property
+    def _collection(self) -> chromadb.Collection:
+        """Create the Chroma client/collection on first use (thread-safe)."""
+
+        collection = self._collection_obj
+        if collection is not None:
+            return collection
+
+        with self._chroma_lock:
+            if self._collection_obj is None:
+                import chromadb
+
+                self._client = chromadb.PersistentClient(path=self._settings.chroma_persist_dir)
+                self._collection_obj = self._client.get_or_create_collection(
+                    name=self._settings.chroma_collection
+                )
+                logger.info(
+                    "Initialized Chroma collection '%s' in %s",
+                    self._settings.chroma_collection,
+                    self._settings.chroma_persist_dir,
+                )
+            return self._collection_obj
 
     def _get_embedding_model(self) -> SentenceTransformer:
         model = self._embedding_model
@@ -37,6 +58,8 @@ class ChromaRegulationStore:
 
         with self._embedding_lock:
             if self._embedding_model is None:
+                from sentence_transformers import SentenceTransformer
+
                 logger.info("Loading embedding model '%s'", self._embedding_model_name)
                 self._embedding_model = SentenceTransformer(self._embedding_model_name)
             return self._embedding_model

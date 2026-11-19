@@ -157,9 +157,6 @@ def startup_event() -> None:
         context_char_limit=settings.strategy_context_char_limit,
     )
 
-    # Pre-load embedding model so first request does not trigger a slow download.
-    store._get_embedding_model()
-
     report_service = PDFReportService(settings)
     blog_service = MarkdownBlogService(settings)
 
@@ -176,6 +173,7 @@ def startup_event() -> None:
 
 
 @app.get("/health", tags=["system"])
+@app.get("/api/health", include_in_schema=False)
 def healthcheck() -> dict[str, str]:
     return {"status": "ok"}
 
